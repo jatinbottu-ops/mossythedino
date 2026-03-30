@@ -44,6 +44,54 @@
 })();
 
 /* ================================================================
+   CHECKOUT RETURN STATE
+================================================================ */
+(function initCheckoutState() {
+  var params = new URLSearchParams(window.location.search);
+  var state = params.get('checkout');
+  if (!state) return;
+
+  function showMessage(text, type) {
+    var existing = document.getElementById('checkout-message');
+    if (existing) existing.remove();
+
+    var banner = document.createElement('div');
+    banner.id = 'checkout-message';
+    banner.className = 'checkout-message checkout-message--' + type;
+    banner.textContent = text;
+    document.body.prepend(banner);
+  }
+
+  if (state === 'cancel') {
+    showMessage('Checkout was canceled. Your cart is still here when you are ready.', 'warning');
+    return;
+  }
+
+  if (state !== 'success') return;
+
+  var sessionId = params.get('session_id');
+  if (!sessionId) {
+    showMessage('Payment return received, but the session could not be verified.', 'warning');
+    return;
+  }
+
+  fetch('/api/checkout-session-status?session_id=' + encodeURIComponent(sessionId))
+    .then(function (res) { return res.json(); })
+    .then(function (payload) {
+      if (payload && payload.payment_status === 'paid') {
+        localStorage.removeItem('mossy_cart');
+        showMessage('Payment successful. Thank you for your order.', 'success');
+        window.mossyTrack('Purchase Completed', { session_id: sessionId });
+      } else {
+        showMessage('Checkout returned, but payment is still pending.', 'warning');
+      }
+    })
+    .catch(function () {
+      showMessage('Payment return received, but verification failed.', 'warning');
+    });
+})();
+
+/* ================================================================
    SCROLL ANIMATIONS
    Handles data-fade, data-fade-left, data-fade-right, data-scale
 ================================================================ */
@@ -188,6 +236,34 @@
     badge.style.display = count > 0 ? 'flex' : 'none';
   }
 
+  function startCheckout(source, items) {
+    var checkoutItems = Array.isArray(items) ? items : getCart();
+    if (!checkoutItems.length) return;
+
+    window.mossyTrack('Checkout Started', {
+      source: source || 'unknown',
+      items: checkoutItems.length
+    });
+
+    fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ items: checkoutItems })
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (payload) {
+        if (!payload || !payload.url) {
+          throw new Error(payload && payload.error ? payload.error : 'Unable to start checkout');
+        }
+        window.location.href = payload.url;
+      })
+      .catch(function (error) {
+        window.alert(error.message || 'Unable to start checkout right now.');
+      });
+  }
+
   function addToCart() {
     var qty  = parseInt(document.getElementById('quantity')?.value  || 1, 10);
     var size = document.getElementById('size')?.value || 'child';
@@ -260,7 +336,8 @@
 
     if (cart.length === 0) {
       body.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
-      foot.innerHTML = '';
+      foot.innerHTML =
+        '<button class="btn btn--primary btn--lg cart-checkout" type="button" disabled>Checkout — cart empty</button>';
       return;
     }
 
@@ -294,6 +371,7 @@
           items: cart.length,
           total: total
         });
+        startCheckout('cart_drawer', cart);
       });
     }
 
@@ -346,6 +424,19 @@
   document.querySelectorAll('.sticky-cta__btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       openCartDrawer('sticky_cta');
+    });
+  });
+
+  document.querySelectorAll('.btn--apple, .btn--shoppay').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var qty  = parseInt(document.getElementById('quantity')?.value || 1, 10);
+      var size = document.getElementById('size')?.value || 'child';
+      startCheckout('express_button', [{
+        name: 'Mossy the Dino Hoodie',
+        size: size,
+        price: 39,
+        qty: qty
+      }]);
     });
   });
 

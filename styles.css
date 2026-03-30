@@ -77,6 +77,28 @@ body {
 
 @media (min-width: 768px) { body { padding-bottom: 0; } }
 
+.checkout-message {
+  position: sticky;
+  top: 0;
+  z-index: 400;
+  padding: 0.9rem 1rem;
+  text-align: center;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.checkout-message--success {
+  background: #e7f4ea;
+  color: #245133;
+  border-bottom: 1px solid #cfe5d5;
+}
+
+.checkout-message--warning {
+  background: #fff4de;
+  color: #6b4a12;
+  border-bottom: 1px solid #f0ddb6;
+}
+
 img, video { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
