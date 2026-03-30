@@ -199,29 +199,32 @@ ul, ol { list-style: none; }
 ================================================================ */
 .hero__img {
   width: 100%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 5 / 6;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 18%;
   border-radius: var(--r-xl);
   display: block;
+  box-shadow: var(--shadow-lg);
 }
 
 .emotional__img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   border-radius: var(--r-xl);
   display: block;
+  box-shadow: var(--shadow-md);
 }
 
 .buy__img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 22%;
   border-radius: var(--r-xl);
   display: block;
+  box-shadow: var(--shadow-md);
 }
 
 /* ================================================================
@@ -248,42 +251,46 @@ ul, ol { list-style: none; }
 
 .tiktok-strip__cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-4);
-  max-width: 520px;
+  grid-template-columns: repeat(2, minmax(180px, 220px));
+  gap: var(--sp-6);
+  justify-content: center;
   margin-inline: auto;
 }
 
 .tiktok-card {
-  border-radius: var(--r-lg);
+  border-radius: 28px;
   overflow: hidden;
-  border: 1px solid var(--color-border-faint);
-  background: #000;
+  border: 1px solid rgba(17,17,17,0.08);
+  background: #111;
   position: relative;
+  padding: var(--sp-2);
+  box-shadow: 0 18px 42px rgba(17,17,17,0.16);
 }
 
 .tiktok-card__img {
   width: 100%;
-  aspect-ratio: 9 / 16;
+  aspect-ratio: 1206 / 2622;
   object-fit: cover;
   object-position: center top;
   opacity: 0.88;
   display: block;
   transition: opacity 200ms ease;
+  border-radius: 22px;
 }
 
 .tiktok-card:hover .tiktok-card__img { opacity: 1; }
 
 .tiktok-card__meta {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  bottom: var(--sp-2);
+  left: var(--sp-2);
+  right: var(--sp-2);
   padding: var(--sp-3) var(--sp-4);
   background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  border-radius: 0 0 22px 22px;
 }
 
 .tiktok-card__stat {
@@ -517,6 +524,16 @@ ul, ol { list-style: none; }
 
 .hero__media {
   position: relative;
+  width: 100%;
+}
+
+.hero__text { max-width: 34rem; }
+
+@media (min-width: 768px) {
+  .hero__media {
+    max-width: 470px;
+    justify-self: end;
+  }
 }
 
 .hero__badge {
@@ -556,6 +573,8 @@ ul, ol { list-style: none; }
 
 .proof-header {
   text-align: center;
+  max-width: 42rem;
+  margin-inline: auto;
   margin-bottom: var(--sp-12);
 }
 
@@ -689,10 +708,13 @@ ul, ol { list-style: none; }
 ================================================================ */
 .product-points {
   padding: var(--section-v) var(--sp-8);
-  background: var(--color-bg);
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg) 14%, var(--color-bg) 100%);
 }
 
 .product-points .section-headline {
+  text-align: center;
+  max-width: 12ch;
+  margin-inline: auto;
   margin-bottom: var(--sp-12);
 }
 
@@ -785,6 +807,11 @@ ul, ol { list-style: none; }
   .emotional__inner { grid-template-columns: 1fr 1fr; gap: var(--sp-16); }
 }
 
+.emotional__media {
+  width: 100%;
+  max-width: 520px;
+}
+
 .emotional__text {
   display: flex;
   flex-direction: column;
@@ -856,6 +883,12 @@ ul, ol { list-style: none; }
 
 @media (min-width: 768px) {
   .buy__inner { grid-template-columns: 1fr 1fr; gap: var(--sp-16); }
+}
+
+.buy__media {
+  width: 100%;
+  max-width: 420px;
+  justify-self: center;
 }
 
 .buy__headline {
@@ -1379,11 +1412,13 @@ ul, ol { list-style: none; }
     order: -1;
     margin-left: calc(-1 * var(--sp-5));
     margin-right: calc(-1 * var(--sp-5));
-    margin-bottom: var(--sp-5);
+    margin-bottom: var(--sp-4);
+    max-width: none;
   }
   .hero__text {
     position: relative;
     z-index: 1;
+    max-width: 100%;
   }
   .hero__eyebrow { margin-bottom: var(--sp-3); }
   .hero__headline {
@@ -1416,14 +1451,15 @@ ul, ol { list-style: none; }
     border-radius: var(--r-xl);
   }
   .hero__img {
-    aspect-ratio: 1 / 1;
-    object-position: center 22%;
+    aspect-ratio: 5 / 4;
+    object-position: center 20%;
     border-radius: 0 0 var(--r-xl) var(--r-xl);
   }
   .hero__badge {
     font-size: 0.65rem;
     padding: 0.45rem 0.7rem;
   }
+  .hero__badge--bottom { display: none; }
   .hero__badge--top {
     top: var(--sp-3);
     left: var(--sp-3);
@@ -1441,7 +1477,23 @@ ul, ol { list-style: none; }
   .testimonial { padding: var(--sp-5); gap: var(--sp-3); }
   .testimonial blockquote { font-size: var(--text-sm); }
   .tiktok-strip { margin-top: var(--sp-10); padding-top: var(--sp-6); }
-  .tiktok-strip__cards { gap: var(--sp-3); }
+  .tiktok-strip__cards {
+    display: flex;
+    gap: var(--sp-3);
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--sp-2);
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .tiktok-strip__cards::-webkit-scrollbar { display: none; }
+  .tiktok-card {
+    flex: 0 0 46vw;
+    min-width: 165px;
+    padding: 6px;
+    scroll-snap-align: start;
+  }
 
   /* Section headlines */
   .section-headline { font-size: var(--text-2xl); }
@@ -1456,7 +1508,11 @@ ul, ol { list-style: none; }
 
   /* Emotional */
   .emotional__inner { gap: var(--sp-6); }
-  .emotional__img { aspect-ratio: 4 / 3; }
+  .emotional__media { max-width: 100%; }
+  .emotional__img {
+    aspect-ratio: 1 / 1;
+    object-position: center top;
+  }
 
   /* Origin */
   .origin { padding-top: var(--sp-10); padding-bottom: var(--sp-10); }
@@ -1471,7 +1527,11 @@ ul, ol { list-style: none; }
     margin-bottom: var(--sp-5);
   }
   .buy__rating { margin-bottom: var(--sp-4); }
-  .buy__img { aspect-ratio: 4 / 3; }
+  .buy__media { max-width: 100%; }
+  .buy__img {
+    aspect-ratio: 1 / 1;
+    object-position: center 24%;
+  }
   .buy__actions { flex-direction: column; gap: var(--sp-3); }
   .buy__qty { width: 100%; }
   .buy__add { width: 100%; }
@@ -1504,6 +1564,10 @@ ul, ol { list-style: none; }
   .hero__trust li { padding: 0.4rem 0.68rem; }
   .hero__proof p { font-size: var(--text-xs); }
   .hero__badge { font-size: 0.6rem; }
+  .tiktok-card {
+    flex-basis: 48vw;
+    min-width: 152px;
+  }
 }
 
 /* ================================================================
