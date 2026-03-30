@@ -1230,40 +1230,23 @@ ul, ol { list-style: none; }
   /* Nav */
   .nav__logo { font-size: var(--text-lg); }
 
-  /* Hero — image leads full-bleed, text below */
-  .hero { padding-top: 0; padding-bottom: var(--sp-8); }
-  .hero__inner { gap: 0; }
-
-  /* Pull image out of container padding so it's edge-to-edge */
-  .hero__media {
-    order: -1;
-    margin-left: calc(-1 * var(--sp-5));
-    margin-right: calc(-1 * var(--sp-5));
-  }
-  .hero__img {
-    aspect-ratio: 16 / 9;
-    border-radius: 0;
-    object-position: center top;
-    width: 100%;
-  }
-
-  /* Text block sits below image with breathing room */
-  .hero__text { padding-top: var(--sp-6); text-align: center; }
+  /* Hero */
+  .hero { padding-top: var(--sp-6); padding-bottom: var(--sp-8); }
+  .hero__inner { gap: var(--sp-6); }
   .hero__headline {
-    font-size: 1.6rem;
-    line-height: 1.2;
+    font-size: 1.75rem;
+    line-height: 1.15;
     margin-bottom: var(--sp-3);
   }
   .hero__subtext {
     font-size: var(--text-sm);
     max-width: 100%;
     margin-bottom: var(--sp-5);
-    margin-left: auto;
-    margin-right: auto;
   }
   .hero__cta { width: 100%; justify-content: center; font-size: var(--text-base); padding: 0.875rem 1.25rem; }
-  .hero__trust { justify-content: center; gap: var(--sp-2) var(--sp-4); }
+  .hero__trust { gap: var(--sp-2) var(--sp-4); }
   .hero__trust li { font-size: var(--text-xs); }
+  .hero__img { aspect-ratio: 3 / 2; object-position: center 20%; }
 
   /* Social proof */
   .proof-header { margin-bottom: var(--sp-8); }
@@ -1299,11 +1282,7 @@ ul, ol { list-style: none; }
   .buy__price { font-size: var(--text-3xl); }
   .buy__price-row { margin-bottom: var(--sp-5); gap: var(--sp-3); }
   .buy__rating { margin-bottom: var(--sp-4); }
-  .buy__media {
-    margin-left: calc(-1 * var(--sp-5));
-    margin-right: calc(-1 * var(--sp-5));
-  }
-  .buy__img { aspect-ratio: 4 / 3; border-radius: 0; }
+  .buy__img { aspect-ratio: 4 / 3; }
   .buy__actions { flex-direction: column; gap: var(--sp-3); }
   .buy__qty { width: 100%; }
   .buy__add { width: 100%; }
