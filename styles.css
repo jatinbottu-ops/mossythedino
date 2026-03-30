@@ -1373,36 +1373,53 @@ ul, ol { list-style: none; }
   .nav__logo { font-size: var(--text-lg); }
 
   /* Hero */
-  .hero { padding-top: var(--sp-6); padding-bottom: var(--sp-8); }
-  .hero__inner { gap: var(--sp-6); }
+  .hero { padding-top: 0; padding-bottom: var(--sp-8); }
+  .hero__inner { gap: 0; }
+  .hero__media {
+    order: -1;
+    margin-left: calc(-1 * var(--sp-5));
+    margin-right: calc(-1 * var(--sp-5));
+    margin-bottom: var(--sp-5);
+  }
+  .hero__text {
+    position: relative;
+    z-index: 1;
+  }
   .hero__eyebrow { margin-bottom: var(--sp-3); }
   .hero__headline {
-    font-size: 1.75rem;
+    font-size: 1.68rem;
     line-height: 1.15;
     margin-bottom: var(--sp-3);
   }
   .hero__subtext {
     font-size: var(--text-sm);
     max-width: 100%;
-    margin-bottom: var(--sp-5);
+    margin-bottom: var(--sp-4);
   }
   .hero__offer {
     width: 100%;
     justify-content: space-between;
-    margin-bottom: var(--sp-4);
+    margin-bottom: var(--sp-3);
   }
   .hero__actions {
     flex-direction: column;
     align-items: stretch;
-    gap: var(--sp-3);
-    margin-bottom: var(--sp-5);
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-4);
   }
   .hero__cta { width: 100%; justify-content: center; font-size: var(--text-base); padding: 0.875rem 1.25rem; }
   .hero__link { text-align: center; }
-  .hero__trust { gap: var(--sp-2); margin-bottom: var(--sp-5); }
+  .hero__trust { gap: var(--sp-2); margin-bottom: var(--sp-4); }
   .hero__trust li { font-size: var(--text-xs); }
-  .hero__proof { padding: var(--sp-4); }
-  .hero__img { aspect-ratio: 3 / 2; object-position: center 20%; }
+  .hero__proof {
+    padding: var(--sp-4);
+    border-radius: var(--r-xl);
+  }
+  .hero__img {
+    aspect-ratio: 1 / 1;
+    object-position: center 22%;
+    border-radius: 0 0 var(--r-xl) var(--r-xl);
+  }
   .hero__badge {
     font-size: 0.65rem;
     padding: 0.45rem 0.7rem;
@@ -1476,6 +1493,17 @@ ul, ol { list-style: none; }
   [data-fade-right] {
     transform: translateY(22px);
   }
+}
+
+@media (max-width: 420px) {
+  .hero__headline { font-size: 1.52rem; }
+  .hero__eyebrow { font-size: 0.68rem; padding: 0.38rem 0.68rem; }
+  .hero__offer { padding: 0.7rem 0.85rem; }
+  .hero__price { font-size: 1.5rem; }
+  .hero__offer-copy { font-size: 0.78rem; }
+  .hero__trust li { padding: 0.4rem 0.68rem; }
+  .hero__proof p { font-size: var(--text-xs); }
+  .hero__badge { font-size: 0.6rem; }
 }
 
 /* ================================================================
