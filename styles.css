@@ -1419,6 +1419,10 @@ ul, ol { list-style: none; }
     position: relative;
     z-index: 1;
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   .hero__eyebrow { margin-bottom: var(--sp-3); }
   .hero__headline {
@@ -1432,23 +1436,31 @@ ul, ol { list-style: none; }
     margin-bottom: var(--sp-4);
   }
   .hero__offer {
-    width: 100%;
+    width: min(100%, 320px);
     justify-content: space-between;
     margin-bottom: var(--sp-3);
+    margin-inline: auto;
   }
   .hero__actions {
     flex-direction: column;
     align-items: stretch;
     gap: var(--sp-2);
     margin-bottom: var(--sp-4);
+    width: min(100%, 320px);
   }
   .hero__cta { width: 100%; justify-content: center; font-size: var(--text-base); padding: 0.875rem 1.25rem; }
   .hero__link { text-align: center; }
-  .hero__trust { gap: var(--sp-2); margin-bottom: var(--sp-4); }
+  .hero__trust {
+    gap: var(--sp-2);
+    margin-bottom: var(--sp-4);
+    justify-content: center;
+  }
   .hero__trust li { font-size: var(--text-xs); }
   .hero__proof {
     padding: var(--sp-4);
     border-radius: var(--r-xl);
+    margin-inline: auto;
+    text-align: center;
   }
   .hero__img {
     aspect-ratio: 5 / 4;
@@ -1470,11 +1482,23 @@ ul, ol { list-style: none; }
   }
 
   /* Social proof */
-  .proof-header { margin-bottom: var(--sp-8); }
+  .proof-header {
+    margin-bottom: var(--sp-8);
+    max-width: 30rem;
+    margin-inline: auto;
+    text-align: center;
+  }
   .proof-stars { font-size: var(--text-xl); letter-spacing: 2px; }
   .proof-headline { font-size: var(--text-xl); }
   .proof-score { font-size: var(--text-xs); }
-  .testimonial { padding: var(--sp-5); gap: var(--sp-3); }
+  .testimonials {
+    scroll-padding-inline: 0;
+  }
+  .testimonial {
+    padding: var(--sp-5);
+    gap: var(--sp-3);
+    flex: 0 0 100%;
+  }
   .testimonial blockquote { font-size: var(--text-sm); }
   .tiktok-strip { margin-top: var(--sp-10); padding-top: var(--sp-6); }
   .tiktok-strip__cards {
