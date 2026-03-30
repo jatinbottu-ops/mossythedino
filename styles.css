@@ -993,7 +993,10 @@ ul, ol { list-style: none; }
    MOBILE OVERRIDES
 ================================================================ */
 @media (max-width: 767px) {
-  :root { --section-v: var(--sp-12); }
+  :root {
+    --section-v: var(--sp-10);
+    --text-base: 0.9375rem;
+  }
 
   /* Remove section-level horizontal padding — container handles it */
   .hero,
@@ -1007,45 +1010,84 @@ ul, ol { list-style: none; }
     padding-right: 0;
   }
 
+  /* Tighter container on mobile */
+  .container { padding-inline: var(--sp-5); }
+
+  /* Nav */
+  .nav__logo { font-size: var(--text-lg); }
+
   /* Hero */
-  .hero { padding-top: var(--sp-8); padding-bottom: var(--sp-10); }
-  .hero__headline { font-size: clamp(1.9rem, 8vw, 2.5rem); margin-bottom: var(--sp-4); }
-  .hero__subtext { font-size: var(--text-base); max-width: 100%; margin-bottom: var(--sp-6); }
-  .hero__cta { width: 100%; justify-content: center; }
+  .hero { padding-top: var(--sp-6); padding-bottom: var(--sp-8); }
+  .hero__inner { gap: var(--sp-6); }
+  .hero__headline {
+    font-size: 1.75rem;
+    line-height: 1.15;
+    margin-bottom: var(--sp-3);
+  }
+  .hero__subtext {
+    font-size: var(--text-sm);
+    max-width: 100%;
+    margin-bottom: var(--sp-5);
+  }
+  .hero__cta { width: 100%; justify-content: center; font-size: var(--text-base); padding: 0.875rem 1.25rem; }
   .hero__trust { gap: var(--sp-2) var(--sp-4); }
+  .hero__trust li { font-size: var(--text-xs); }
+
+  /* Cap hero image height so it doesn't eat the whole screen */
+  .hero__img { aspect-ratio: 3 / 2; object-position: center 20%; }
 
   /* Social proof */
-  .proof-headline { font-size: var(--text-2xl); }
+  .proof-header { margin-bottom: var(--sp-8); }
+  .proof-stars { font-size: var(--text-xl); letter-spacing: 2px; }
+  .proof-headline { font-size: var(--text-xl); }
+  .proof-score { font-size: var(--text-xs); }
+  .testimonial { padding: var(--sp-5); gap: var(--sp-3); }
+  .testimonial blockquote { font-size: var(--text-sm); }
+  .tiktok-strip { margin-top: var(--sp-10); padding-top: var(--sp-6); }
+  .tiktok-strip__cards { gap: var(--sp-3); }
+
+  /* Section headlines */
+  .section-headline { font-size: var(--text-2xl); }
+  .section-body { font-size: var(--text-sm); max-width: 100%; }
 
   /* Product points */
-  .product-points .section-headline { text-align: center; }
+  .product-points .section-headline { text-align: center; margin-bottom: var(--sp-8); }
+  .point { padding: var(--sp-5) 0; gap: var(--sp-4); }
+  .point__num { font-size: var(--text-2xl); }
+  .point__content h3 { font-size: var(--text-base); margin-bottom: var(--sp-1); }
+  .point__content p { font-size: var(--text-sm); }
 
-  /* Section body */
-  .section-body { font-size: var(--text-base); max-width: 100%; }
+  /* Emotional */
+  .emotional__inner { gap: var(--sp-6); }
+  .emotional__img { aspect-ratio: 4 / 3; }
 
   /* Origin */
-  .origin__quote { font-size: var(--text-lg); line-height: 1.7; }
+  .origin { padding-top: var(--sp-10); padding-bottom: var(--sp-10); }
+  .origin__quote { font-size: var(--text-base); line-height: 1.75; }
 
   /* Buy */
-  .buy__headline { font-size: var(--text-2xl); }
-  .buy__price { font-size: var(--text-4xl); }
-  .buy__actions {
-    flex-direction: column;
-    gap: var(--sp-3);
-  }
+  .buy__headline { font-size: var(--text-xl); margin-bottom: var(--sp-3); }
+  .buy__price { font-size: var(--text-3xl); }
+  .buy__price-row { margin-bottom: var(--sp-5); gap: var(--sp-3); }
+  .buy__rating { margin-bottom: var(--sp-4); }
+  .buy__img { aspect-ratio: 4 / 3; }
+  .buy__actions { flex-direction: column; gap: var(--sp-3); }
   .buy__qty { width: 100%; }
   .buy__add { width: 100%; }
   .buy__express-row { flex-direction: column; gap: var(--sp-2); }
   .buy__express-row .btn--express { width: 100%; }
-
-  /* Emotional — image on top, text below */
-  .emotional__inner { gap: var(--sp-8); }
+  .buy__trust li { font-size: var(--text-xs); }
 
   /* Footer */
   .footer { padding-top: var(--sp-8); padding-bottom: var(--sp-8); }
-  .footer__links { gap: var(--sp-5); }
+  .footer__brand { font-size: var(--text-lg); }
+  .footer__links { gap: var(--sp-4); }
+  .footer__links a { font-size: var(--text-xs); }
 
-  /* On mobile, fade animations become simple fade-up to avoid horizontal overflow */
+  /* Sticky CTA */
+  .sticky-cta { padding: var(--sp-3) var(--sp-4); }
+
+  /* Fade animations — avoid horizontal overflow */
   [data-fade-left],
   [data-fade-right] {
     transform: translateY(22px);
