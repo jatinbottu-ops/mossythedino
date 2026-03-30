@@ -119,20 +119,175 @@
 })();
 
 /* ================================================================
-   ADD TO CART — placeholder, wire up to Shopify when ready
+   CART — tracks items in localStorage, shows count in nav
 ================================================================ */
 (function initCart() {
-  document.querySelectorAll('.buy__add, .sticky-cta__btn').forEach(function (btn) {
+
+  var STORAGE_KEY = 'mossy_cart';
+
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch (e) { return []; }
+  }
+
+  function saveCart(cart) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+  }
+
+  function totalItems(cart) {
+    return cart.reduce(function (sum, item) { return sum + item.qty; }, 0);
+  }
+
+  function updateBadge() {
+    var cart  = getCart();
+    var count = totalItems(cart);
+    var badge = document.getElementById('cart-badge');
+    if (!badge) return;
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+  }
+
+  function addToCart() {
+    var qty  = parseInt(document.getElementById('quantity')?.value  || 1, 10);
+    var size = document.getElementById('size')?.value || 'child';
+    var cart = getCart();
+
+    var existing = cart.find(function (i) { return i.size === size; });
+    if (existing) {
+      existing.qty += qty;
+    } else {
+      cart.push({ name: 'Mossy the Dino', size: size, price: 39, qty: qty });
+    }
+
+    saveCart(cart);
+    updateBadge();
+  }
+
+  /* Inject cart icon + badge into nav */
+  var navInner = document.querySelector('.nav__inner');
+  if (navInner) {
+    var cartBtn = document.createElement('button');
+    cartBtn.className  = 'cart-btn';
+    cartBtn.type       = 'button';
+    cartBtn.setAttribute('aria-label', 'View cart');
+    cartBtn.innerHTML  =
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>' +
+      '<span class="cart-badge" id="cart-badge" style="display:none">0</span>';
+    navInner.appendChild(cartBtn);
+
+    cartBtn.addEventListener('click', function () {
+      openCartDrawer();
+    });
+  }
+
+  /* Cart drawer */
+  function buildDrawer() {
+    var drawer = document.createElement('div');
+    drawer.id        = 'cart-drawer';
+    drawer.className = 'cart-drawer';
+    drawer.setAttribute('aria-label', 'Shopping cart');
+    drawer.setAttribute('role', 'dialog');
+    drawer.innerHTML =
+      '<div class="cart-drawer__backdrop"></div>' +
+      '<div class="cart-drawer__panel">' +
+        '<div class="cart-drawer__head">' +
+          '<h2 class="cart-drawer__title">Your cart</h2>' +
+          '<button class="cart-drawer__close" type="button" aria-label="Close cart">' +
+            '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="2" x2="16" y2="16"/><line x1="16" y1="2" x2="2" y2="16"/></svg>' +
+          '</button>' +
+        '</div>' +
+        '<div class="cart-drawer__body" id="cart-body"></div>' +
+        '<div class="cart-drawer__foot" id="cart-foot"></div>' +
+      '</div>';
+    document.body.appendChild(drawer);
+
+    drawer.querySelector('.cart-drawer__backdrop').addEventListener('click', closeCartDrawer);
+    drawer.querySelector('.cart-drawer__close').addEventListener('click', closeCartDrawer);
+    return drawer;
+  }
+
+  function renderDrawer() {
+    var cart  = getCart();
+    var body  = document.getElementById('cart-body');
+    var foot  = document.getElementById('cart-foot');
+    if (!body || !foot) return;
+
+    if (cart.length === 0) {
+      body.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+      foot.innerHTML = '';
+      return;
+    }
+
+    var total = cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0);
+
+    body.innerHTML = cart.map(function (item, idx) {
+      return (
+        '<div class="cart-item">' +
+          '<div class="cart-item__info">' +
+            '<span class="cart-item__name">' + item.name + '</span>' +
+            '<span class="cart-item__meta">Size: ' + (item.size === 'adult' ? 'Adult' : 'Child') + '</span>' +
+          '</div>' +
+          '<div class="cart-item__controls">' +
+            '<button class="cart-item__qty-btn" data-idx="' + idx + '" data-delta="-1" aria-label="Remove one">−</button>' +
+            '<span class="cart-item__qty">' + item.qty + '</span>' +
+            '<button class="cart-item__qty-btn" data-idx="' + idx + '" data-delta="1" aria-label="Add one">+</button>' +
+          '</div>' +
+          '<span class="cart-item__price">$' + (item.price * item.qty) + '</span>' +
+        '</div>'
+      );
+    }).join('');
+
+    foot.innerHTML =
+      '<div class="cart-total"><span>Total</span><span>$' + total + '</span></div>' +
+      '<button class="btn btn--primary btn--lg cart-checkout" type="button">Checkout — coming soon</button>';
+
+    body.querySelectorAll('.cart-item__qty-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var idx   = parseInt(btn.dataset.idx, 10);
+        var delta = parseInt(btn.dataset.delta, 10);
+        var cart  = getCart();
+        cart[idx].qty += delta;
+        if (cart[idx].qty <= 0) cart.splice(idx, 1);
+        saveCart(cart);
+        updateBadge();
+        renderDrawer();
+      });
+    });
+  }
+
+  function openCartDrawer() {
+    var drawer = document.getElementById('cart-drawer') || buildDrawer();
+    renderDrawer();
+    drawer.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCartDrawer() {
+    var drawer = document.getElementById('cart-drawer');
+    if (drawer) drawer.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  /* Add to cart buttons */
+  document.querySelectorAll('.buy__add').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var qty = document.getElementById('quantity')?.value || 1;
-      console.log('[Cart] qty:', qty);
+      addToCart();
       var orig = btn.textContent;
       btn.textContent = 'Added!';
       btn.disabled = true;
       setTimeout(function () {
         btn.textContent = orig;
         btn.disabled = false;
-      }, 1600);
+      }, 1400);
+      openCartDrawer();
     });
   });
+
+  document.querySelectorAll('.sticky-cta__btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      openCartDrawer();
+    });
+  });
+
+  updateBadge();
 })();
