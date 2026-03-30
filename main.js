@@ -3,6 +3,47 @@
  */
 
 /* ================================================================
+   ANALYTICS — helper around Vercel Web Analytics
+================================================================ */
+(function initAnalytics() {
+  window.mossyTrack = function (name, data) {
+    if (typeof window.va !== 'function') return;
+    try {
+      window.va('event', name, data || {});
+    } catch (e) {
+      /* Never let analytics break the storefront */
+    }
+  };
+
+  var ctas = [
+    { selector: '.nav__cta', name: 'Buy CTA Clicked', data: { location: 'nav' } },
+    { selector: '.hero__cta', name: 'Buy CTA Clicked', data: { location: 'hero' } },
+    { selector: '.sticky-cta__btn', name: 'Buy CTA Clicked', data: { location: 'sticky' } },
+    { selector: '.hero__link', name: 'Social Proof Clicked', data: { location: 'hero' } }
+  ];
+
+  ctas.forEach(function (entry) {
+    document.querySelectorAll(entry.selector).forEach(function (node) {
+      node.addEventListener('click', function () {
+        window.mossyTrack(entry.name, entry.data);
+      });
+    });
+  });
+
+  document.querySelectorAll('.btn--apple').forEach(function (node) {
+    node.addEventListener('click', function () {
+      window.mossyTrack('Express Checkout Clicked', { provider: 'apple_pay' });
+    });
+  });
+
+  document.querySelectorAll('.btn--shoppay').forEach(function (node) {
+    node.addEventListener('click', function () {
+      window.mossyTrack('Express Checkout Clicked', { provider: 'shop_pay' });
+    });
+  });
+})();
+
+/* ================================================================
    SCROLL ANIMATIONS
    Handles data-fade, data-fade-left, data-fade-right, data-scale
 ================================================================ */
@@ -152,6 +193,11 @@
     var size = document.getElementById('size')?.value || 'child';
     var cart = getCart();
 
+    window.mossyTrack('Add To Cart Clicked', {
+      size: size,
+      qty: qty
+    });
+
     var existing = cart.find(function (i) { return i.size === size; });
     if (existing) {
       existing.qty += qty;
@@ -176,7 +222,7 @@
     navInner.appendChild(cartBtn);
 
     cartBtn.addEventListener('click', function () {
-      openCartDrawer();
+      openCartDrawer('nav_cart');
     });
   }
 
@@ -241,6 +287,16 @@
       '<div class="cart-total"><span>Total</span><span>$' + total + '</span></div>' +
       '<button class="btn btn--primary btn--lg cart-checkout" type="button">Checkout — coming soon</button>';
 
+    var checkoutBtn = foot.querySelector('.cart-checkout');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', function () {
+        window.mossyTrack('Checkout Clicked', {
+          items: cart.length,
+          total: total
+        });
+      });
+    }
+
     body.querySelectorAll('.cart-item__qty-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var idx   = parseInt(btn.dataset.idx, 10);
@@ -255,11 +311,15 @@
     });
   }
 
-  function openCartDrawer() {
+  function openCartDrawer(source) {
     var drawer = document.getElementById('cart-drawer') || buildDrawer();
     renderDrawer();
     drawer.classList.add('is-open');
     document.body.style.overflow = 'hidden';
+
+    window.mossyTrack('Cart Opened', {
+      source: source || 'unknown'
+    });
   }
 
   function closeCartDrawer() {
@@ -279,13 +339,13 @@
         btn.textContent = orig;
         btn.disabled = false;
       }, 1400);
-      openCartDrawer();
+      openCartDrawer('buy_section');
     });
   });
 
   document.querySelectorAll('.sticky-cta__btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      openCartDrawer();
+      openCartDrawer('sticky_cta');
     });
   });
 
