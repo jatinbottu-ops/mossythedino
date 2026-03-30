@@ -788,6 +788,24 @@ ul, ol { list-style: none; }
   font-weight: 500;
 }
 
+.buy__size-row {
+  margin-bottom: var(--sp-4);
+}
+
+.buy__size {
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--r-md);
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  font-weight: 500;
+  background: var(--color-surface);
+  color: var(--color-text);
+  min-height: 48px;
+  cursor: pointer;
+}
+
 .buy__actions {
   display: flex;
   gap: var(--sp-3);
