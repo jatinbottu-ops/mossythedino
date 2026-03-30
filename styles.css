@@ -993,13 +993,57 @@ ul, ol { list-style: none; }
    MOBILE OVERRIDES
 ================================================================ */
 @media (max-width: 767px) {
-  :root { --section-v: var(--sp-16); }
+  :root { --section-v: var(--sp-12); }
 
+  /* Remove section-level horizontal padding — container handles it */
+  .hero,
+  .social-proof,
+  .product-points,
+  .emotional,
+  .origin,
+  .buy,
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Hero */
   .hero { padding-top: var(--sp-8); padding-bottom: var(--sp-10); }
-  .hero__subtext { font-size: var(--text-lg); }
-  .section-body { font-size: var(--text-base); }
-  .origin__quote { font-size: var(--text-xl); }
+  .hero__headline { font-size: clamp(1.9rem, 8vw, 2.5rem); margin-bottom: var(--sp-4); }
+  .hero__subtext { font-size: var(--text-base); max-width: 100%; margin-bottom: var(--sp-6); }
+  .hero__cta { width: 100%; justify-content: center; }
+  .hero__trust { gap: var(--sp-2) var(--sp-4); }
+
+  /* Social proof */
+  .proof-headline { font-size: var(--text-2xl); }
+
+  /* Product points */
+  .product-points .section-headline { text-align: center; }
+
+  /* Section body */
+  .section-body { font-size: var(--text-base); max-width: 100%; }
+
+  /* Origin */
+  .origin__quote { font-size: var(--text-lg); line-height: 1.7; }
+
+  /* Buy */
+  .buy__headline { font-size: var(--text-2xl); }
   .buy__price { font-size: var(--text-4xl); }
+  .buy__actions {
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  .buy__qty { width: 100%; }
+  .buy__add { width: 100%; }
+  .buy__express-row { flex-direction: column; gap: var(--sp-2); }
+  .buy__express-row .btn--express { width: 100%; }
+
+  /* Emotional — image on top, text below */
+  .emotional__inner { gap: var(--sp-8); }
+
+  /* Footer */
+  .footer { padding-top: var(--sp-8); padding-bottom: var(--sp-8); }
+  .footer__links { gap: var(--sp-5); }
 
   /* On mobile, fade animations become simple fade-up to avoid horizontal overflow */
   [data-fade-left],
