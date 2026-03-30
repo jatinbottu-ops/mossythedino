@@ -362,7 +362,7 @@
 
     foot.innerHTML =
       '<div class="cart-total"><span>Total</span><span>$' + total + '</span></div>' +
-      '<button class="btn btn--primary btn--lg cart-checkout" type="button">Checkout — coming soon</button>';
+      '<button class="btn btn--primary btn--lg cart-checkout" type="button">Checkout with Stripe</button>';
 
     var checkoutBtn = foot.querySelector('.cart-checkout');
     if (checkoutBtn) {
