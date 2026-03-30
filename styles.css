@@ -269,9 +269,8 @@ ul, ol { list-style: none; }
 
 .tiktok-card__img {
   width: 100%;
-  aspect-ratio: 1206 / 2622;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  object-fit: contain;
   opacity: 0.88;
   display: block;
   transition: opacity 200ms ease;
@@ -525,14 +524,15 @@ ul, ol { list-style: none; }
 .hero__media {
   position: relative;
   width: 100%;
+  margin-inline: auto;
 }
 
 .hero__text { max-width: 34rem; }
 
 @media (min-width: 768px) {
   .hero__media {
-    max-width: 470px;
-    justify-self: end;
+    max-width: 420px;
+    justify-self: center;
   }
 }
 
