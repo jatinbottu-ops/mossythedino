@@ -66,7 +66,7 @@ module.exports = async function handler(req, res) {
   items.forEach(function (item, index) {
     params.set('line_items[' + index + '][quantity]', String(item.qty));
     params.set('line_items[' + index + '][price_data][currency]', 'usd');
-    params.set('line_items[' + index + '][price_data][unit_amount]', '3900');
+    params.set('line_items[' + index + '][price_data][unit_amount]', '4900');
     params.set('line_items[' + index + '][price_data][product_data][name]', item.name);
     params.set(
       'line_items[' + index + '][price_data][product_data][description]',

@@ -278,7 +278,7 @@
     if (existing) {
       existing.qty += qty;
     } else {
-      cart.push({ name: 'Mossy the Dino Hoodie', size: size, price: 39, qty: qty });
+      cart.push({ name: 'Mossy the Dino Hoodie', size: size, price: 49, qty: qty });
     }
 
     saveCart(cart);
@@ -434,7 +434,7 @@
       startCheckout('express_button', [{
         name: 'Mossy the Dino Hoodie',
         size: size,
-        price: 39,
+        price: 49,
         qty: qty
       }]);
     });
