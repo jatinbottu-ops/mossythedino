@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mossy the Dino — A companion they'll never put down</title>
+  <title>Mossy the Dino — The wearable dino hoodie that steals the show</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="images/hero.jpg" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,7 +16,7 @@
   <nav class="nav" aria-label="Main navigation">
     <div class="nav__inner container">
       <a class="nav__logo" href="/">Mossy the Dino</a>
-      <a class="btn btn--primary btn--sm nav__cta" href="#buy">Get yours — $39</a>
+      <a class="btn btn--primary btn--sm nav__cta" href="#buy">Shop Mossy — $39</a>
     </div>
   </nav>
 
@@ -39,24 +40,39 @@
 
     <div class="hero__inner container">
       <div class="hero__text">
+        <p class="hero__eyebrow">Wearable plush hood + tail</p>
         <h1 class="hero__headline" id="hero-headline">
-          Not every gift<br />has to be perfect.<br />
-          <em>Just loved.</em>
+          The dino skeleton hoodie<br />people instantly ask about.
         </h1>
         <p class="hero__subtext">
-          A soft, slightly silly companion your child won't put down.
+          Mossy turns an ordinary outfit into a full look: soft, oversized, a little absurd, and impossible not to notice.
         </p>
-        <a class="btn btn--primary btn--lg hero__cta" href="#buy">
-          Shop now
-          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8.5 4 13 8l-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+        <div class="hero__offer" aria-label="Offer summary">
+          <span class="hero__price">$39</span>
+          <span class="hero__offer-copy">Child + adult sizes</span>
+        </div>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg hero__cta" href="#buy">
+            Shop Mossy
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8.5 4 13 8l-4.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="hero__link" href="#social-proof">See it in action</a>
+        </div>
         <ul class="hero__trust" aria-label="Quick trust signals">
-          <li>Safe for all ages</li>
+          <li>Soft plush finish</li>
+          <li>Free shipping over $50</li>
+          <li>Seen in viral TikToks</li>
         </ul>
+        <div class="hero__proof" aria-label="Why shoppers buy Mossy">
+          <div class="hero__proof-stars" aria-hidden="true">★★★★★</div>
+          <p>Built for compliments, costume parties, gifting, and photos that need a little chaos.</p>
+        </div>
       </div>
 
       <div class="hero__media">
-        <img src="images/hero.jpg" alt="Mossy the Dino plush" class="hero__img" />
+        <img src="images/hero.jpg" alt="A child wearing the Mossy dinosaur skeleton hood and tail set in a store" class="hero__img" width="447" height="447" fetchpriority="high" />
+        <div class="hero__badge hero__badge--top">TikTok-favorite look</div>
+        <div class="hero__badge hero__badge--bottom">One piece. Instant costume.</div>
       </div>
     </div>
   </section>
@@ -74,15 +90,15 @@
     <div class="container">
       <div class="proof-header" data-fade>
         <div class="proof-stars" aria-label="4.9 out of 5 stars">★★★★★</div>
-        <p class="proof-score">Loved by families everywhere</p>
-        <h2 class="proof-headline">Loved by thousands of families</h2>
+        <p class="proof-score">Soft enough to wear, weird enough to go viral</p>
+        <h2 class="proof-headline">The part people remember from the whole outfit</h2>
       </div>
 
       <!-- Mobile: horizontal scroll snap. Desktop: 3-col grid -->
       <div class="testimonials">
         <article class="testimonial" data-fade data-fade-delay="1">
           <svg class="testimonial__mark" viewBox="0 0 32 22" fill="none" aria-hidden="true"><path d="M0 22V13.4C0 5.6 4.5 1.3 13.5 0l1.1 2.5C9.7 3.7 7.2 6.4 6.7 10.4H12.5V22H0Zm17 0V13.4C17 5.6 21.5 1.3 30.5 0l1.1 2.5c-4.9 1.2-7.4 3.9-7.9 7.9H29.5V22H17Z" fill="currentColor"/></svg>
-          <blockquote>My son sleeps with it every night. It's become part of his whole bedtime routine.</blockquote>
+          <blockquote>My son wore it to a birthday party and would not take it off for the rest of the day.</blockquote>
           <footer>
             <strong>Sarah M.</strong>
             <span>Verified buyer</span>
@@ -91,7 +107,7 @@
 
         <article class="testimonial" data-fade data-fade-delay="2">
           <svg class="testimonial__mark" viewBox="0 0 32 22" fill="none" aria-hidden="true"><path d="M0 22V13.4C0 5.6 4.5 1.3 13.5 0l1.1 2.5C9.7 3.7 7.2 6.4 6.7 10.4H12.5V22H0Zm17 0V13.4C17 5.6 21.5 1.3 30.5 0l1.1 2.5c-4.9 1.2-7.4 3.9-7.9 7.9H29.5V22H17Z" fill="currentColor"/></svg>
-          <blockquote>It's oddly comforting and adorable. Even I want to squeeze it.</blockquote>
+          <blockquote>Way softer than I expected, and it gets compliments every single time I wear it out.</blockquote>
           <footer>
             <strong>Jamie R.</strong>
             <span>Verified buyer</span>
@@ -100,7 +116,7 @@
 
         <article class="testimonial" data-fade data-fade-delay="3">
           <svg class="testimonial__mark" viewBox="0 0 32 22" fill="none" aria-hidden="true"><path d="M0 22V13.4C0 5.6 4.5 1.3 13.5 0l1.1 2.5C9.7 3.7 7.2 6.4 6.7 10.4H12.5V22H0Zm17 0V13.4C17 5.6 21.5 1.3 30.5 0l1.1 2.5c-4.9 1.2-7.4 3.9-7.9 7.9H29.5V22H17Z" fill="currentColor"/></svg>
-          <blockquote>The quality surprised me. It feels like an heirloom toy, not something from a big box store.</blockquote>
+          <blockquote>It looks ridiculous in the best way. We bought it for photos and ended up using it for every family event.</blockquote>
           <footer>
             <strong>Priya K.</strong>
             <span>Verified buyer</span>
@@ -121,14 +137,14 @@
         </p>
         <div class="tiktok-strip__cards">
           <div class="tiktok-card">
-            <img src="images/tiktok1.png" alt="TikTok post showing Mossy the Dino with 218K likes" class="tiktok-card__img" />
+            <img src="images/tiktok1.png" alt="TikTok post showing the Mossy dinosaur hoodie with 218K likes" class="tiktok-card__img" width="1206" height="2622" loading="lazy" decoding="async" />
             <div class="tiktok-card__meta">
               <span class="tiktok-card__stat">♥ 218K</span>
               <span class="tiktok-card__handle">@sillydinofluff</span>
             </div>
           </div>
           <div class="tiktok-card">
-            <img src="images/tiktok2.png" alt="TikTok post showing Mossy the Dino being worn" class="tiktok-card__img" />
+            <img src="images/tiktok2.png" alt="TikTok post showing the Mossy dinosaur hoodie being worn" class="tiktok-card__img" width="1206" height="2622" loading="lazy" decoding="async" />
             <div class="tiktok-card__meta">
               <span class="tiktok-card__stat">↗ 101K</span>
               <span class="tiktok-card__handle">@sillydinofluff</span>
@@ -150,8 +166,8 @@
         <li class="point" data-fade>
           <span class="point__num" aria-hidden="true">01</span>
           <div class="point__content">
-            <h3>Ultra-soft plush</h3>
-            <p>The kind of soft that invites squeezing, snuggling, and sleeping with every single night.</p>
+            <h3>Soft, oversized plush feel</h3>
+            <p>Comfort-first materials keep the look dramatic without making it scratchy or stiff to wear.</p>
           </div>
           <div class="point__icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none"><path d="M10 25c0-5.5 4.5-10 10-10s10 4.5 10 10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M4 25a5 5 0 0 1 5-5M36 25a5 5 0 0 0-5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M3 28a1.5 1.5 0 0 0 1.5 1.5h31A1.5 1.5 0 0 0 37 28v-1.5A1.5 1.5 0 0 0 35.5 25h-31A1.5 1.5 0 0 0 3 26.5V28Z" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -161,8 +177,8 @@
         <li class="point" data-fade>
           <span class="point__num" aria-hidden="true">02</span>
           <div class="point__content">
-            <h3>Lightweight &amp; safe</h3>
-            <p>Thoughtfully sized for little hands. No sharp parts, no choking hazards, no worries.</p>
+            <h3>Child and adult sizes</h3>
+            <p>Easy to shop for kids, teens, or grownups who want the same dramatic dino look.</p>
           </div>
           <div class="point__icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none"><path d="M20 6C13 6 8 13 8 20c0 8 6 14 12 16 6-2 12-8 12-16 0-7-5-14-12-14Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 20l4 4 8-8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -172,8 +188,8 @@
         <li class="point" data-fade>
           <span class="point__num" aria-hidden="true">03</span>
           <div class="point__content">
-            <h3>Designed for play and comfort</h3>
-            <p>A companion for adventures by day and a comfort object by night.</p>
+            <h3>Instant outfit upgrade</h3>
+            <p>Perfect for parties, gifting, conventions, and photos when a normal hoodie just is not enough.</p>
           </div>
           <div class="point__icon" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none"><path d="M25 8a12 12 0 1 1-12 17A8.5 8.5 0 0 0 25 8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="29" cy="12" r="1.2" fill="currentColor"/><circle cx="32" cy="17" r="0.8" fill="currentColor"/></svg>
@@ -194,19 +210,18 @@
 
     <div class="container emotional__inner">
       <div class="emotional__media" data-fade-left>
-        <img src="images/lifestyle.jpg" alt="Two people having fun wearing the Mossy the Dino skeleton backpack" class="emotional__img" />
+        <img src="images/lifestyle.jpg" alt="Two people wearing the Mossy dinosaur skeleton hood and tail set together" class="emotional__img" width="800" height="800" loading="lazy" decoding="async" />
       </div>
 
       <div class="emotional__text" data-fade-right>
         <h2 class="section-headline" id="emotional-headline">
-          Some toys get left behind.<br /><em>This one doesn't.</em>
+          Some accessories get one laugh.<br /><em>This one steals the whole outfit.</em>
         </h2>
         <p class="section-body">
-          There's a difference between a toy that's played with and one that's kept.
-          Mossy the Dino was built for the latter — the kind of companion that shows up
-          in family photos years from now.
+          Mossy sits right between costume piece, conversation starter, and genuinely comfy layer.
+          It is the kind of thing people ask about the second you walk into the room.
         </p>
-        <a class="btn btn--ghost" href="#buy">Shop now</a>
+        <a class="btn btn--ghost" href="#buy">Shop Mossy</a>
       </div>
     </div>
   </section>
@@ -228,9 +243,9 @@
       <div class="origin__rule" aria-hidden="true"></div>
       <h2 class="origin__label" id="origin-headline" data-fade>Why we made this</h2>
       <blockquote class="origin__quote" data-scale>
-        "We wanted something that didn't feel mass-produced.
-        Something a child could actually connect with — not just pick up once and forget.
-        So we obsessed over the softness, the weight, the way it looks when it's been loved for a year.
+        "We wanted something dramatic enough to stop people mid-scroll,
+        but soft enough that you would actually want to wear it for more than a photo.
+        So we obsessed over the hood shape, the plush feel, and the spine detail.
         <em>This is that thing.</em>"
       </blockquote>
     </div>
@@ -243,16 +258,17 @@
     <div class="container buy__inner">
 
       <div class="buy__media" data-fade-left>
-        <img src="images/product.jpg" alt="Person wearing the Mossy the Dino skeleton backpack at a desk" class="buy__img" />
+        <img src="images/product.jpg" alt="Person wearing the Mossy dinosaur skeleton hood and tail set while sitting at a desk" class="buy__img" width="225" height="225" loading="lazy" decoding="async" />
       </div>
 
       <div class="buy__details" data-fade>
         <h2 class="buy__headline" id="buy-headline">
-          Mossy the Dino
+          Mossy the Dino Hoodie
         </h2>
 
         <div class="buy__rating" aria-label="5 out of 5 stars">
           <span class="buy__stars">★★★★★</span>
+          <span class="buy__rating-text">TikTok-favorite dino hoodie</span>
         </div>
 
         <div class="buy__price-row">
@@ -260,11 +276,22 @@
           <span class="buy__shipping">Free shipping over $50</span>
         </div>
 
+        <div class="buy__meta-grid" aria-label="Shopping details">
+          <article class="buy__meta-card" id="buy-sizing">
+            <span class="buy__meta-label">Sizing</span>
+            <strong>Child and adult fits</strong>
+          </article>
+          <article class="buy__meta-card" id="buy-shipping">
+            <span class="buy__meta-label">Shipping</span>
+            <strong>Free over $50</strong>
+          </article>
+        </div>
+
         <div class="buy__size-row">
           <label class="sr-only" for="size">Size</label>
           <select class="buy__size" id="size" name="size">
-            <option value="child">Child</option>
-            <option value="adult">Adult</option>
+            <option value="child">Child fit</option>
+            <option value="adult">Adult fit</option>
           </select>
         </div>
 
@@ -275,7 +302,7 @@
             <option value="2">Qty: 2</option>
             <option value="3">Qty: 3</option>
           </select>
-          <button class="btn btn--primary btn--lg buy__add" type="button" aria-label="Add Mossy the Dino to cart">
+          <button class="btn btn--primary btn--lg buy__add" type="button" aria-label="Add Mossy the Dino Hoodie to cart">
             Add to cart
           </button>
         </div>
@@ -291,7 +318,11 @@
         <ul class="buy__trust">
           <li>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1.5C4.2 1.5 2 3.7 2 6.5c0 3.2 2.5 5.7 5 6.5 2.5-.8 5-3.3 5-6.5 0-2.8-2.2-5-5-5Z" stroke="currentColor" stroke-width="1.2"/><path d="m4.5 7 1.5 1.5 3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Safe for all ages
+            Soft plush finish with a full hood-and-tail look
+          </li>
+          <li>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1.5C4.2 1.5 2 3.7 2 6.5c0 3.2 2.5 5.7 5 6.5 2.5-.8 5-3.3 5-6.5 0-2.8-2.2-5-5-5Z" stroke="currentColor" stroke-width="1.2"/><path d="m4.5 7 1.5 1.5 3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Great for gifts, parties, and photo-ready outfits
           </li>
         </ul>
       </div>
@@ -304,7 +335,14 @@
     <div class="container footer__inner">
       <div class="footer__top">
         <p class="footer__brand">Mossy the Dino</p>
-        <p class="footer__tagline">Made for the ones who feel everything.</p>
+        <p class="footer__tagline">Soft. strange. impossible to ignore.</p>
+      </div>
+      <div class="footer__links" aria-label="Footer links">
+        <a href="#buy">Shop</a>
+        <a href="#product-points">Highlights</a>
+        <a href="#buy-sizing">Sizing</a>
+        <a href="#buy-shipping">Shipping</a>
+        <a href="#social-proof">TikTok</a>
       </div>
       <p class="footer__copy">&copy; 2026 Mossy the Dino. All rights reserved.</p>
     </div>
@@ -314,10 +352,10 @@
   <div class="sticky-cta" id="sticky-cta" aria-label="Sticky purchase bar" role="complementary">
     <div class="sticky-cta__inner container">
       <div class="sticky-cta__info">
-        <span class="sticky-cta__name">Mossy the Dino</span>
+        <span class="sticky-cta__name">Mossy Dino Hoodie</span>
         <span class="sticky-cta__price">$39</span>
       </div>
-      <a class="btn btn--primary sticky-cta__btn" href="#buy">Add to cart</a>
+      <a class="btn btn--primary sticky-cta__btn" href="#buy">Shop now</a>
     </div>
   </div>
 

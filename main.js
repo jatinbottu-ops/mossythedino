@@ -1,5 +1,5 @@
 /**
- * main.js — Mossy the Dino
+ * main.js — Mossy the Dino Hoodie
  */
 
 /* ================================================================
@@ -156,7 +156,7 @@
     if (existing) {
       existing.qty += qty;
     } else {
-      cart.push({ name: 'Mossy the Dino', size: size, price: 39, qty: qty });
+      cart.push({ name: 'Mossy the Dino Hoodie', size: size, price: 39, qty: qty });
     }
 
     saveCart(cart);
@@ -225,7 +225,7 @@
         '<div class="cart-item">' +
           '<div class="cart-item__info">' +
             '<span class="cart-item__name">' + item.name + '</span>' +
-            '<span class="cart-item__meta">Size: ' + (item.size === 'adult' ? 'Adult' : 'Child') + '</span>' +
+            '<span class="cart-item__meta">Size: ' + (item.size === 'adult' ? 'Adult fit' : 'Child fit') + '</span>' +
           '</div>' +
           '<div class="cart-item__controls">' +
             '<button class="cart-item__qty-btn" data-idx="' + idx + '" data-delta="-1" aria-label="Remove one">−</button>' +
